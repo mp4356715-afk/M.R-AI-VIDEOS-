@@ -7,7 +7,7 @@
 <style>
 body{background:#0a0a1a;color:white;font-family:sans-serif;text-align:center;padding:20px}
 h1{color:#00d4ff;font-size:32px}
-.btn{background:linear-gradient(90deg,#00d4ff,#0099ff);border:none;padding:15px 30px;border-radius:12px;color:white;font-size:18px;margin:10px;cursor:pointer;width:90%}
+.btn{background:linear-gradient(90deg,#00d4ff,#0099ff);border:none;padding:15px 30px;border-radius:12px;color:white;font-size:18px;margin:10px;cursor:pointer;width:90%;text-decoration:none;display:inline-block}
 textarea{width:90%;height:120px;background:#1a1a2e;border:1px solid #00d4ff;border-radius:10px;color:white;padding:10px;font-size:16px}
 #result img{max-width:90%;border-radius:12px;margin-top:20px;border:2px solid #00d4ff}
 #loading{display:none;color:#00ff88}
@@ -16,9 +16,9 @@ textarea{width:90%;height:120px;background:#1a1a2e;border:1px solid #00d4ff;bord
 <body>
 
 <h1>🤖 AI VIDEO 804</h1>
-<p>ابھی Text to Image کام کرے گا۔ ویڈیو جلد</p>
+<p>ابھی Text to Image کام کرے گا۔ ویڈیو جلد آئے گی</p>
 
-<textarea id="prompt" placeholder="Example: A beautiful lion walking in jungle, cinematic, 4k"></textarea><br>
+<textarea id="prompt" placeholder="Example: Indian flag, Pakistan flag"></textarea><br>
 
 <button class="btn" onclick="generate()">🚀 Generate AI Image</button>
 <p id="loading">تصویر بن رہی ہے... 10 سیکنڈ</p>
@@ -32,7 +32,10 @@ async function generate(){
   document.getElementById('loading').style.display = 'block';
   document.getElementById('result').innerHTML = "";
   
-  let url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512`;
+  // زبردستی جھنڈا بنوانے کے لیے
+  let finalPrompt = prompt + ", flag, waving, no people, no girl, no man, clear flag design, 4k";
+  
+  let url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=512&height=512`;
   
   document.getElementById('result').innerHTML = `<img src="${url}" /> <br> <a href="${url}" download class="btn">Download Image</a>`;
   document.getElementById('loading').style.display = 'none';
