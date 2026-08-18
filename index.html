@@ -62,7 +62,8 @@
   </div>
 
 <script>
-let dailyCredits = 10;
+<script>
+let dailyCredits = parseInt(localStorage.getItem('ai_video_credits')) || 10;
 document.getElementById('credits').innerText = `🎁 Daily Credits: ${dailyCredits}/10`;
 
 document.getElementById('generateBtn').addEventListener('click', async () => {
@@ -77,29 +78,41 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
   
   btn.disabled = true;
   btn.innerText = '⏳ Generating...';
-  resultDiv.innerHTML = '<p>⏳ ویڈیو بنا رہی ہے... 30 سیکنڈ لگیں گے</p>';
+  resultDiv.innerHTML = '<p style="color:#aaa;">⏳ ویڈیو بنا رہی ہے... 40 سیکنڈ لگیں گے</p>';
   
-  let width = 576, height = 1024;
+  let width = 576, height = 1024; // 9:16
   if(aspect === '16:9') { width = 1024; height = 576; }
   if(aspect === '1:1') { width = 1024; height = 1024; }
   
-  const finalPrompt = `${userPrompt}, high quality, cinematic, smooth motion, 4k`;
-  const apiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=wan2.1&animate=true&nologo=true&width=${width}&height=${height}`;
+  // اہم: پرومپٹ کو بہتر بناؤ
+  const finalPrompt = `cinematic video of ${userPrompt}, high quality, smooth motion, 4k, no watermark`;
+  
+  // API 1: Pollinations
+  let apiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=wan2.1&animate=true&nologo=true&width=${width}&height=${height}&seed=${Math.random()}`;
   
   try {
-    const res = await fetch(apiUrl);
+    let res = await fetch(apiUrl);
+    
+    // اگر API 1 فیل ہو تو API 2 ٹرائی کرو
+    if(!res.ok){
+      apiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=flux&animate=true&width=${width}&height=${height}`;
+      res = await fetch(apiUrl);
+    }
+    
     if(res.ok){
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
-      resultDiv.innerHTML = `<video src="${url}" controls autoplay loop playsinline></video>`;
+      resultDiv.innerHTML = `<video src="${url}" controls autoplay loop playsinline style="width:100%; border-radius:10px; border:2px solid #00d4ff;"></video>`;
       
       dailyCredits--;
+      localStorage.setItem('ai_video_credits', dailyCredits);
       creditsEl.innerText = `🎁 Daily Credits: ${dailyCredits}/10`;
     } else {
-      resultDiv.innerHTML = `<p style="color:red">❌ Error ${res.status}. 1 منٹ بعد دوبارہ ٹرائی کریں</p>`;
+      resultDiv.innerHTML = `<p style="color:red">❌ API بند ہے۔ 2 منٹ بعد دوبارہ ٹرائی کریں</p>`;
     }
   } catch(err) {
-    resultDiv.innerHTML = '<p style="color:red">❌ نیٹ سلو ہے</p>';
+    resultDiv.innerHTML = '<p style="color:red">❌ نیٹ سلو ہے۔ دوبارہ کوشش کریں</p>';
+    console.log(err);
   }
   
   btn.disabled = false;
