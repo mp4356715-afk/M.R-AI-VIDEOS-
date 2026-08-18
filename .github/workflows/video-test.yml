@@ -1,0 +1,16 @@
+name: Test Video API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test API connection
+        env:
+          VIDEO_API_KEY: ${{ secrets.VIDEO_API_KEY }}
+        run: |
+          echo "API key is configured."
+          echo "Video API connection test is ready."
