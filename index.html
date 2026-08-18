@@ -1,121 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI VIDEO 804</title>
+<style>
+body{background:#0a0a1a;color:white;font-family:sans-serif;text-align:center;padding:20px}
+h1{color:#00d4ff;font-size:32px;text-shadow:0 0 10px #00d4ff}
+.btn{background:linear-gradient(90deg,#00d4ff,#0099ff);border:none;padding:15px 30px;border-radius:12px;color:white;font-size:18px;margin:10px;cursor:pointer;width:90%;font-weight:bold}
+textarea{width:90%;height:120px;background:#1a1a2e;border:2px solid #00d4ff;border-radius:10px;color:white;padding:15px;font-size:16px}
+#result img{max-width:90%;border-radius:15px;margin-top:20px;border:3px solid #00ff88;box-shadow:0 0 20px #00ff88}
+#loading{color:#00ff88;font-size:18px;display:none}
+.examples{color:#aaa;font-size:14px;margin:10px}
+</style>
+</head>
+<body>
+
+<h1>🤖 AI VIDEO 804</h1>
+<p>جو دل میں آئے لکھو، وہی تصویر بن جائے گی</p>
+
+<textarea id="prompt" placeholder="Example: 
+1. Pakistani flag waving
+2. Shani riding a lion
+3. Beautiful girl in garden
+4. Car in rain"></textarea><br>
+
+<button class="btn" onclick="generate()">🚀 Generate AI Image</button>
+<p id="loading">تصویر بن رہی ہے... 15 سیکنڈ ویٹ کرو</p>
+<div id="result"></div>
+
+<p class="examples">
+<b>مثال:</b> Shani with flag, Cat playing, Mountain, Logo
+</p>
+
 <script>
 async function generate(){
-
-  let userPrompt =
-    document.getElementById("prompt").value.trim();
-
-  if(userPrompt === ""){
-    alert("پہلے تصویر کے بارے میں کچھ لکھو");
-    return;
-  }
-
-  document.getElementById("loading").style.display = "block";
-  document.getElementById("result").innerHTML = "";
-
-  let p = userPrompt.toLowerCase();
-
-  let finalPrompt = "";
-
-  /* 🇵🇰 Pakistan Flag */
-  if(
-    p.includes("pakistan flag") ||
-    p.includes("pakistani flag") ||
-    p.includes("پاکستان کا جھنڈا") ||
-    p.includes("پاکستانی جھنڈا")
-  ){
-
-    finalPrompt =
-    "A single official Pakistan national flag only. " +
-    "The flag has a dark green field, a white vertical stripe along the hoist side, " +
-    "a white crescent moon and a five-pointed white star in the green field. " +
-    "The complete flag is clearly visible, waving naturally in the wind. " +
-    "Realistic cloth texture, accurate official flag design, " +
-    "no people, no woman, no man, no face, no animals, no buildings, " +
-    "no text, no other flags, only the Pakistan national flag.";
-
-  }
-
-  /* 🇮🇳 India Flag */
-  else if(
-    p.includes("india flag") ||
-    p.includes("indian flag") ||
-    p.includes("بھارت کا جھنڈا") ||
-    p.includes("انڈیا کا جھنڈا")
-  ){
-
-    finalPrompt =
-    "A single official Indian national flag only. " +
-    "Three horizontal bands: saffron on top, white in the middle, " +
-    "green on the bottom, with a navy blue Ashoka Chakra with 24 spokes " +
-    "in the exact center of the white band. " +
-    "The complete flag is clearly visible, waving naturally in the wind. " +
-    "Realistic cloth texture, accurate official Indian flag design, " +
-    "no people, no woman, no man, no face, no animals, no buildings, " +
-    "no text, no other flags, only the Indian national flag.";
-
-  }
-
-  /* 🌎 Any other image */
-  else{
-
-    finalPrompt =
-    "Create exactly the image described by the user. " +
-    "Do not replace the requested subject with something else. " +
-    "Do not add unrelated people, objects or characters. " +
-    "Follow the user's description carefully. " +
-    "High quality, detailed, realistic image unless another style is requested. " +
-    "User request: " + userPrompt;
-
-  }
-
-
-  let url =
-    "https://image.pollinations.ai/prompt/" +
-    encodeURIComponent(finalPrompt) +
-    "?width=1024&height=1024&seed=" +
-    Math.floor(Math.random() * 999999999);
-
-
+  let prompt = document.getElementById('prompt').value;
+  if(prompt === ""){ alert("پہلے کچھ لکھو بھائی"); return; }
+  
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').innerHTML = "";
+  
+  // Flux model سب سے اچھا ہے۔ ہر چیز بناتا ہے
+  let finalPrompt = `${prompt}, ultra realistic, 4k, high detail, sharp focus`;
+  
+  let url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=flux&width=1024&height=1024`;
+  
   let img = new Image();
-
-  img.onload = function(){
-
-    document.getElementById("loading").style.display = "none";
-
-    document.getElementById("result").innerHTML = "";
-
-    img.style.maxWidth = "90%";
-    img.style.borderRadius = "12px";
-    img.style.border = "3px solid #00ff88";
-
-    document.getElementById("result").appendChild(img);
-
-    let br = document.createElement("br");
-    document.getElementById("result").appendChild(br);
-
-    let download = document.createElement("a");
-
-    download.href = url;
-    download.download = "AI-VIDEO-804-Image.png";
-    download.className = "btn";
-    download.innerText = "📥 Download Image";
-
-    document.getElementById("result").appendChild(download);
-  };
-
-
-  img.onerror = function(){
-
-    document.getElementById("loading").style.display = "none";
-
-    document.getElementById("result").innerHTML =
-      "<p style='color:red;font-size:18px'>" +
-      "❌ تصویر بنانے میں مسئلہ آیا۔ دوبارہ کوشش کریں۔" +
-      "</p>";
-
-  };
-
-
   img.src = url;
+  img.onload = function(){
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').innerHTML = `<img src="${url}" /> <br> <a href="${url}" download class="btn">📥 Download Image</a>`;
+  }
+  img.onerror = function(){
+    document.getElementById('loading').style.display = 'none';
+    alert("سرور مصروف ہے۔ 10 سیکنڈ بعد دوبارہ کوشش کرو");
+  }
 }
 </script>
+
+</body>
+</html>
