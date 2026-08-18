@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI VIDEO 804</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#070b14;
+  color:#fff;
+  min-height:100vh;
+}
+
+.header{
+  text-align:center;
+  padding:25px 15px;
+  background:linear-gradient(135deg,#111b3d,#070b14);
+}
+
+.logo{
+  font-size:30px;
+  font-weight:bold;
+  color:#00e5ff;
+}
+
+.subtitle{
+  margin-top:7px;
+  color:#aab4cc;
+  font-size:14px;
+}
+
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:20px 15px 40px;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.tab{
+  padding:15px 8px;
+  border:1px solid #303951;
+  border-radius:14px;
+  background:#111827;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:linear-gradient(135deg,#00c9e8,#4d62ff);
+}
+
+.card{
+  background:#111827;
+  border:1px solid #283149;
+  border-radius:18px;
+  padding:20px;
+}
+
+.tool{
+  display:none;
+}
+
+.tool.active{
+  display:block;
+}
+
+h2{
+  margin-bottom:8px;
+}
+
+.desc{
+  color:#9ca8bf;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+textarea{
+  width:100%;
+  height:140px;
+  resize:none;
+  padding:15px;
+  border-radius:13px;
+  border:1px solid #35405c;
+  background:#070b14;
+  color:white;
+  outline:none;
+  font-size:15px;
+}
+
+input[type=file]{
+  width:100%;
+  padding:18px;
+  border:1px dashed #45516e;
+  border-radius:13px;
+  background:#070b14;
+  color:#aaa;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+select{
+  padding:13px;
+  border-radius:10px;
+  background:#070b14;
+  color:white;
+  border:1px solid #35405c;
+}
+
+.generate{
+  width:100%;
+  padding:16px;
+  margin-top:17px;
+  border:0;
+  border-radius:13px;
+  background:linear-gradient(135deg,#00d9ff,#5366ff);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.status{
+  margin-top:18px;
+  padding:15px;
+  background:#080d19;
+  border-radius:12px;
+  text-align:center;
+  color:#9ca8bf;
+  display:none;
+}
+
+.footer{
+  text-align:center;
+  color:#65718b;
+  font-size:12px;
+  margin-top:25px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">🤖 AI VIDEO 804</div>
+  <div class="subtitle">AI Video • AI Image • Image to Video • AI Voice</div>
+</header>
+
+<main class="container">
+
+<div class="tabs">
+
+<button class="tab active" onclick="openTool('video',this)">
+🎬 Text → Video
+</button>
+
+<button class="tab" onclick="openTool('image',this)">
+🖼️ Text → Image
+</button>
+
+<button class="tab" onclick="openTool('imgvideo',this)">
+🎥 Image → Video
+</button>
+
+<button class="tab" onclick="openTool('voice',this)">
+🎙️ AI Voice
+</button>
+
+</div>
+
+<div class="card">
+
+<!-- VIDEO -->
+
+<div id="video" class="tool active">
+
+<h2>🎬 Text to Video</h2>
+
+<p class="desc">
+Write your idea and create an AI video.
+</p>
+
+<textarea
+placeholder="Example: A beautiful lion walking through a jungle at sunset, cinematic, ultra realistic..."
+></textarea>
+
+<div class="options">
+
+<select>
+<option>10 Seconds</option>
+<option>15 Seconds</option>
+<option>30 Seconds</option>
+</select>
+
+<select>
+<option>9:16 Vertical</option>
+<option>16:9 Landscape</option>
+<option>1:1 Square</option>
+</select>
+
+</div>
+
+<button class="generate" onclick="generate()">
+🚀 Generate Video
+</button>
+
+</div>
+
+
+<!-- IMAGE -->
+
+<div id="image" class="tool">
+
+<h2>🖼️ Text to Image</h2>
+
+<p class="desc">
+Create an AI image from your prompt.
+</p>
+
+<textarea
+placeholder="Example: A futuristic luxury city at night, cinematic lighting, ultra realistic..."
+></textarea>
+
+<div class="options">
+
+<select>
+<option>Realistic</option>
+<option>Cinematic</option>
+<option>Anime</option>
+<option>3D</option>
+</select>
+
+<select>
+<option>9:16</option>
+<option>16:9</option>
+<option>1:1</option>
+</select>
+
+</div>
+
+<button class="generate" onclick="generate()">
+🪄 Generate Image
+</button>
+
+</div>
+
+
+<!-- IMAGE TO VIDEO -->
+
+<div id="imgvideo" class="tool">
+
+<h2>🎥 Image to Video</h2>
+
+<p class="desc">
+Upload an image and convert it into a video.
+</p>
+
+<input type="file" accept="image/*">
+
+<textarea
+placeholder="Describe the movement you want..."
+></textarea>
+
+<button class="generate" onclick="generate()">
+🎞️ Generate Video
+</button>
+
+</div>
+
+
+<!-- VOICE -->
+
+<div id="voice" class="tool">
+
+<h2>🎙️ AI Voice</h2>
+
+<p class="desc">
+Create an AI voice from your script.
+</p>
+
+<textarea
+placeholder="اپنا اردو، ہندی یا انگلش اسکرپٹ یہاں لکھیں..."
+></textarea>
+
+<div class="options">
+
+<select>
+<option>Urdu</option>
+<option>English</option>
+<option>Hindi</option>
+</select>
+
+<select>
+<option>Male Voice</option>
+<option>Female Voice</option>
+</select>
+
+</div>
+
+<button class="generate" onclick="generate()">
+🎙️ Generate Voice
+</button>
+
+</div>
+
+<div id="status" class="status">
+⏳ AI generation system is loading...
+</div>
+
+</div>
+
+<div
