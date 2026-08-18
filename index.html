@@ -2,28 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI VIDEO 804 - Free AI Video Generator</title>
+<title>AI VIDEO 804</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID" crossorigin="anonymous"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#05050a;color:#fff;font-family:'Segoe UI',Arial;padding:10px}
-.logo{text-align:center;font-size:26px;font-weight:bold;color:#00d4ff;margin:15px 0}
-h1{text-align:center;font-size:28px} h1 span{color:#00d4ff}
-.ad-box{max-width:728px;margin:15px auto;text-align:center;min-height:90px;background:#0a0a14;border-radius:10px;padding:10px}
+body{background:#05050a;color:#fff;font-family:Arial;padding:10px;text-align:center}
+.logo{font-size:26px;font-weight:bold;color:#00d4ff;margin:15px 0}
+h1{font-size:28px} h1 span{color:#00d4ff}
+.urdu{margin:10px 0 20px;font-size:16px}
+.ad-box{max-width:728px;margin:15px auto;min-height:90px;background:#0a0a14;border-radius:10px;padding:10px}
 .container{max-width:700px;margin:20px auto;background:#111122;padding:25px;border-radius:20px;border:1px solid #222}
-.credits{background:#1a1a2e;padding:12px;border-radius:10px;text-align:center;margin-bottom:15px;color:#00ff88;font-weight:bold}
 textarea{width:100%;height:120px;background:#0a0a14;border:1px solid #333;color:#fff;padding:15px;border-radius:10px;font-size:16px;margin-bottom:15px}
 button{width:100%;padding:16px;background:linear-gradient(90deg,#00c8ff,#0066ff);border:none;color:#fff;font-size:18px;font-weight:bold;border-radius:12px;cursor:pointer}
-button:disabled{background:#333;cursor:not-allowed}
-#result{margin-top:15px;text-align:center}
+#result{margin-top:15px}
 #result video{width:100%;border-radius:10px;margin-top:10px}
-.loader{display:none}
 </style>
 </head>
 <body>
 <div class="logo">🤖 AI VIDEO 804</div>
-<h1>Create <span>Free AI Videos</span></h1>
+<h1>Create <span>Any AI Video</span> From Text</h1>
+<p class="urdu">کارٹون، ریال، اینیمی - جو بھی لکھو گے وی ویڈیو بنے گی</p>
 
 <!-- Ad Top -->
 <div class="ad-box">
@@ -32,13 +30,9 @@ button:disabled{background:#333;cursor:not-allowed}
 </div>
 
 <div class="container">
-  <div class="credits">🎁 آج کے کریڈٹ: <span id="count">5</span> / 5 باقی ہیں</div>
-  <textarea id="prompt" placeholder="مثال: A cat dancing in Karachi street"></textarea>
-  <button id="btn" onclick="makeVideo()">🚀 Generate Free Video</button>
-  
-  <div id="result">
-    <div class="loader" id="loader">⏳ ویڈیو بن رہی ہے... 40 سیکنڈ لگیں گے</div>
-  </div>
+  <textarea id="prompt" placeholder="مثال: Pakistan flag waving"></textarea>
+  <button onclick="makeVideo()">🚀 Generate Video</button>
+  <div id="result"><p style="margin-top:10px;color:#888">ویڈیو یہاں بنے گی</p></div>
 </div>
 
 <!-- Ad Bottom -->
@@ -48,31 +42,13 @@ button:disabled{background:#333;cursor:not-allowed}
 </div>
 
 <script>
-let credits = localStorage.getItem('videoCredits');
-let lastDate = localStorage.getItem('lastDate');
-let today = new Date().toDateString();
-
-if(lastDate != today){
-  credits = 5;
-  localStorage.setItem('lastDate', today);
-}
-if(credits == null) credits = 5;
-
-document.getElementById('count').innerText = credits;
-if(credits <= 0) document.getElementById('btn').disabled = true;
-
 async function makeVideo(){
   let p = document.getElementById('prompt').value;
   if(p==""){alert("پہلے پرامپٹ لکھیں"); return;}
-  if(credits <= 0){alert("آج کے 5 کریڈٹ ختم۔ کل دوبارہ آئیں"); return;}
   
-  credits--;
-  localStorage.setItem('videoCredits', credits);
-  document.getElementById('count').innerText = credits;
-  document.getElementById('loader').style.display = 'block';
-  document.getElementById('btn').disabled = true;
+  document.getElementById('result').innerHTML = "⏳ ویڈیو بن رہی ہے... 40 سیکنڈ لگیں گے";
   
-  // Pollinations AI - فری ویڈیو API
+  // Pollinations - فری API بغیر Key کے
   let url = `https://pollinations.ai/video/` + encodeURIComponent(p);
   
   document.getElementById('result').innerHTML = `
@@ -80,9 +56,6 @@ async function makeVideo(){
     <video controls autoplay src="${url}"></video>
     <a href="${url}" download style="color:#00d4ff">📥 Download Video</a>
   `;
-  
-  if(credits <= 0) document.getElementById('btn').disabled = true;
-  else document.getElementById('btn').disabled = false;
 }
 </script>
 </body>
