@@ -7,17 +7,13 @@
 <title>AI VIDEO 804</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box}
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    margin:0;
+    font-family:Arial,sans-serif;
     background:#070b18;
     color:white;
-    min-height:100vh;
 }
 
 header{
@@ -26,60 +22,30 @@ header{
     align-items:center;
     padding:18px 6%;
     border-bottom:1px solid #202944;
-    background:#080d1c;
-    position:sticky;
-    top:0;
-    z-index:100;
 }
 
 .logo{
+    font-size:24px;
+    font-weight:bold;
     color:#00d9ff;
-    font-size:23px;
-    font-weight:bold;
-    text-decoration:none;
 }
 
-.header-buttons{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.btn{
-    border:none;
-    cursor:pointer;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:10px;
-    padding:10px 16px;
-}
-
-.add-app{
-    background:linear-gradient(90deg,#00ff9d,#00bfff);
-    color:#06111e;
-}
-
-.login-btn{
+.login{
+    padding:10px 18px;
     border:1px solid #00d9ff;
+    border-radius:10px;
     color:white;
-    background:transparent;
-}
-
-.logout-btn{
-    display:none;
-    background:#ff4d67;
-    color:white;
+    text-decoration:none;
 }
 
 .hero{
     text-align:center;
-    padding:85px 20px 65px;
-    background:radial-gradient(circle at top,#10264a,#070b18 60%);
+    padding:60px 20px 30px;
 }
 
 .hero h1{
-    font-size:48px;
-    line-height:1.15;
+    font-size:45px;
+    margin:0;
 }
 
 .hero h1 span{
@@ -87,255 +53,113 @@ header{
 }
 
 .hero p{
-    max-width:650px;
-    margin:20px auto;
     color:#aeb8cc;
     font-size:18px;
-    line-height:1.7;
+    max-width:650px;
+    margin:20px auto;
+    line-height:1.6;
+}
+
+.generator{
+    max-width:700px;
+    margin:30px auto;
+    padding:25px;
+    background:#10172b;
+    border:1px solid #202944;
+    border-radius:18px;
+}
+
+.generator textarea{
+    width:100%;
+    min-height:130px;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #303b59;
+    background:#070b18;
+    color:white;
+    font-size:16px;
+    resize:vertical;
+}
+
+.controls{
+    display:flex;
+    gap:12px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.controls select{
+    flex:1;
+    min-width:150px;
+    padding:12px;
+    border-radius:10px;
+    background:#070b18;
+    color:white;
+    border:1px solid #303b59;
 }
 
 .start{
-    display:inline-block;
-    margin-top:20px;
-    padding:16px 35px;
-    border-radius:12px;
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
+    display:block;
+    width:100%;
+    margin-top:18px;
+    padding:16px 25px;
     background:linear-gradient(90deg,#00d9ff,#006cff);
-}
-
-.user-box{
-    display:none;
-    max-width:650px;
-    margin:25px auto 0;
-    padding:15px;
-    border:1px solid #20385b;
-    background:#0d1629;
+    color:white;
+    border:0;
     border-radius:12px;
-    color:#b9c7dc;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.user-box strong{
+.start:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.credits{
+    margin-top:15px;
+    text-align:center;
     color:#00ff9d;
+    font-weight:bold;
+}
+
+.status{
+    margin-top:15px;
+    text-align:center;
+    color:#aeb8cc;
+    line-height:1.5;
 }
 
 .features{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-    padding:35px 6% 60px;
+    padding:30px 6%;
 }
 
 .card{
     background:#10172b;
     border:1px solid #202944;
-    border-radius:18px;
-    padding:28px 22px;
+    border-radius:16px;
+    padding:25px;
     text-align:center;
 }
 
-.icon{
-    font-size:40px;
-    margin-bottom:15px;
-}
-
-.card h3{
-    margin-bottom:10px;
+.card .icon{
+    font-size:35px;
 }
 
 .card p{
     color:#9da8bd;
-    line-height:1.6;
-}
-
-.free{
-    text-align:center;
-    margin:20px 6% 70px;
-    padding:45px 20px;
-    background:linear-gradient(135deg,#101c35,#0b1327);
-    border:1px solid #202944;
-    border-radius:22px;
-}
-
-.free h2{
-    color:#00ff9d;
-    margin-bottom:15px;
-}
-
-.free p{
-    color:#aeb8cc;
-}
-
-.ratios{
-    text-align:center;
-    padding:10px 6% 60px;
-}
-
-.ratios h2{
-    margin-bottom:25px;
-}
-
-.ratio-container{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.ratio-box{
-    width:230px;
-    background:#10172b;
-    border:1px solid #202944;
-    border-radius:18px;
-    padding:25px;
-}
-
-.ratio-preview{
-    margin:0 auto 15px;
-    border:2px solid #00d9ff;
-    border-radius:8px;
-}
-
-.vertical{
-    width:80px;
-    height:140px;
-}
-
-.horizontal{
-    width:150px;
-    height:85px;
-}
-
-.ratio-box p{
-    color:#8995ab;
-    margin-top:8px;
+    line-height:1.5;
 }
 
 footer{
     text-align:center;
-    padding:35px 20px;
+    padding:30px;
     color:#71809c;
     border-top:1px solid #202944;
-}
-
-/* LOGIN MODAL */
-
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    z-index:999;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal-box{
-    width:100%;
-    max-width:400px;
-    background:#10172b;
-    border:1px solid #263657;
-    border-radius:20px;
-    padding:28px;
-    position:relative;
-}
-
-.modal-box h2{
-    text-align:center;
-    color:#00d9ff;
-    margin-bottom:20px;
-}
-
-.close{
-    position:absolute;
-    right:18px;
-    top:15px;
-    font-size:25px;
-    cursor:pointer;
-    color:#9da8bd;
-}
-
-.input{
-    width:100%;
-    padding:14px;
-    margin-bottom:12px;
-    border-radius:10px;
-    border:1px solid #30405f;
-    background:#080d1c;
-    color:white;
-    outline:none;
-}
-
-.input:focus{
-    border-color:#00d9ff;
-}
-
-.auth-submit{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(90deg,#00d9ff,#006cff);
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.switch{
-    text-align:center;
-    margin-top:15px;
-    color:#9da8bd;
-}
-
-.switch span{
-    color:#00d9ff;
-    cursor:pointer;
-}
-
-.message{
-    text-align:center;
-    margin-top:12px;
-    color:#ff6b7a;
-    font-size:14px;
-}
-
-@media(max-width:650px){
-
-    header{
-        padding:14px 4%;
-    }
-
-    .logo{
-        font-size:17px;
-    }
-
-    .header-buttons{
-        gap:5px;
-    }
-
-    .btn{
-        padding:8px 9px;
-        font-size:11px;
-    }
-
-    .hero{
-        padding:65px 18px 50px;
-    }
-
-    .hero h1{
-        font-size:34px;
-    }
-
-    .hero p{
-        font-size:15px;
-    }
-
-    .start{
-        width:90%;
-    }
 }
 </style>
 </head>
@@ -343,28 +167,9 @@ footer{
 <body>
 
 <header>
-
-<a href="#" class="logo">
-🤖 AI VIDEO 804
-</a>
-
-<div class="header-buttons">
-
-<a href="#" class="btn add-app">
-📱 Add App
-</a>
-
-<button class="btn login-btn" id="loginButton">
-🔐 Login
-</button>
-
-<button class="btn logout-btn" id="logoutButton">
-Logout
-</button>
-
-</div>
+    <div class="logo">🤖 AI VIDEO 804</div>
+    <a href="#" class="login" id="loginBtn">Login</a>
 </header>
-
 
 <section class="hero">
 
@@ -374,16 +179,38 @@ From Your Ideas
 </h1>
 
 <p>
-اپنا خیال لکھیں اور AI کے ذریعے cinematic videos
-بنانے کے لیے تیار ہوں۔ YouTube، Shorts، TikTok اور Reels کے لیے۔
+اپنا خیال لکھیں اور AI کے ذریعے cinematic videos بنانے کے لیے تیار ہوں۔
 </p>
 
-<a href="#" class="start" id="startButton">
-🚀 Start Creating
-</a>
+<div class="generator">
 
-<div class="user-box" id="userBox">
-Welcome, <strong id="userEmail"></strong>
+<textarea id="prompt"
+placeholder="Write your video idea here..."></textarea>
+
+<div class="controls">
+
+<select id="ratio">
+    <option value="9:16">9:16 — Shorts / Reels</option>
+    <option value="16:9">16:9 — YouTube</option>
+</select>
+
+<select id="duration">
+    <option value="5">5 Seconds</option>
+    <option value="10">10 Seconds</option>
+</select>
+
+</div>
+
+<button class="start" id="generateBtn">
+🚀 Generate Video
+</button>
+
+<div class="credits" id="credits">
+🎁 Checking credits...
+</div>
+
+<div class="status" id="status"></div>
+
 </div>
 
 </section>
@@ -394,7 +221,7 @@ Welcome, <strong id="userEmail"></strong>
 <div class="card">
 <div class="icon">🎬</div>
 <h3>AI Video Generator</h3>
-<p>اپنا prompt لکھیں اور AI video creation شروع کریں۔</p>
+<p>اپنا prompt لکھیں اور AI video generation شروع کریں۔</p>
 </div>
 
 <div class="card">
@@ -406,540 +233,203 @@ Welcome, <strong id="userEmail"></strong>
 <div class="card">
 <div class="icon">🖥️</div>
 <h3>16:9 YouTube</h3>
-<p>YouTube اور landscape videos کے لیے۔</p>
+<p>YouTube landscape videos کے لیے۔</p>
 </div>
 
 <div class="card">
 <div class="icon">🎁</div>
 <h3>10 Free Videos</h3>
-<p>ہر user کے لیے روزانہ 10 free video credits۔</p>
+<p>ہر user کے لیے روزانہ 10 video credits۔</p>
 </div>
-
-</section>
-
-
-<section class="ratios">
-
-<h2>🎥 Choose Your Video Format</h2>
-
-<div class="ratio-container">
-
-<div class="ratio-box">
-
-<div class="ratio-preview vertical"></div>
-
-<h3>📱 9:16</h3>
-
-<p>Shorts • TikTok • Reels</p>
-
-</div>
-
-<div class="ratio-box">
-
-<div class="ratio-preview horizontal"></div>
-
-<h3>🖥️ 16:9</h3>
-
-<p>YouTube • Landscape</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="free">
-
-<h2>🎁 10 Free Videos Every Day</h2>
-
-<p>
-Create your account and start creating AI videos.
-</p>
-
-<br>
-
-<button class="start" id="signupButton">
-🚀 Create Free Account
-</button>
 
 </section>
 
 
 <footer>
-
-© 2026 <strong>AI VIDEO 804</strong><br>
-AI Video Creation Platform
-
+© 2026 AI VIDEO 804 — All Rights Reserved
 </footer>
 
 
-<!-- LOGIN / SIGNUP MODAL -->
-
-<div class="modal" id="authModal">
-
-<div class="modal-box">
-
-<div class="close" id="closeModal">
-×
-</div>
-
-<h2 id="authTitle">
-🔐 Login
-</h2>
-
-<input
-type="email"
-id="email"
-class="input"
-placeholder="Email address"
-autocomplete="email"
->
-
-<input
-type="password"
-id="password"
-class="input"
-placeholder="Password"
-autocomplete="current-password"
->
-
-<button
-class="auth-submit"
-id="authSubmit">
-Login
-</button>
-
-<div class="switch">
-
-<span id="switchText">
-Don't have an account? Sign Up
-</span>
-
-</div>
-
-<div class="message" id="authMessage"></div>
-
-</div>
-
-</div>
-
-
-<!-- FIREBASE -->
-
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+/*
+  AI VIDEO 804
+  Daily 10-credit system
 
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
+  IMPORTANT:
+  This is a temporary frontend implementation.
+  Later we will move credit enforcement to the backend.
+*/
+
+const DAILY_LIMIT = 10;
+
+const promptInput = document.getElementById("prompt");
+const generateBtn = document.getElementById("generateBtn");
+const creditsText = document.getElementById("credits");
+const statusText = document.getElementById("status");
+
+function getToday(){
+    const now = new Date();
+
+    return now.getFullYear() + "-" +
+        String(now.getMonth()+1).padStart(2,"0") + "-" +
+        String(now.getDate()).padStart(2,"0");
 }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+function loadCredits(){
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+    const today = getToday();
 
-const firebaseConfig = {
+    let data = JSON.parse(
+        localStorage.getItem("ai_video_804_credits") || "null"
+    );
 
-    apiKey:
-    "AIzaSyCkSwQlqayOBFxsmZOc0rDb2uXjdwgw1eM",
+    if(!data || data.date !== today){
 
-    authDomain:
-    "ai-video-804-f3340.firebaseapp.com",
+        data = {
+            date: today,
+            credits: DAILY_LIMIT
+        };
 
-    projectId:
-    "ai-video-804-f3340",
+        localStorage.setItem(
+            "ai_video_804_credits",
+            JSON.stringify(data)
+        );
+    }
 
-    storageBucket:
-    "ai-video-804-f3340.firebasestorage.app",
+    return data;
+}
 
-    messagingSenderId:
-    "88887965571",
+function updateUI(){
 
-    appId:
-    "1:88887965571:web:005ccd492a04c8431728b6"
-};
+    const data = loadCredits();
 
+    creditsText.textContent =
+        `🎁 Daily Credits: ${data.credits}/${DAILY_LIMIT}`;
 
-/* =========================
-   INITIALIZE FIREBASE
-========================= */
+    if(data.credits <= 0){
 
-const app = initializeApp(firebaseConfig);
+        generateBtn.disabled = true;
 
-const auth = getAuth(app);
+        statusText.textContent =
+            "❌ آج کے 10 free credits ختم ہو گئے ہیں۔ کل دوبارہ 10 credits ملیں گے.";
 
+    }else{
 
-/* =========================
-   ELEMENTS
-========================= */
-
-const modal =
-document.getElementById("authModal");
-
-const loginButton =
-document.getElementById("loginButton");
-
-const logoutButton =
-document.getElementById("logoutButton");
-
-const signupButton =
-document.getElementById("signupButton");
-
-const closeModal =
-document.getElementById("closeModal");
-
-const authTitle =
-document.getElementById("authTitle");
-
-const authSubmit =
-document.getElementById("authSubmit");
-
-const switchText =
-document.getElementById("switchText");
-
-const emailInput =
-document.getElementById("email");
-
-const passwordInput =
-document.getElementById("password");
-
-const authMessage =
-document.getElementById("authMessage");
-
-const userBox =
-document.getElementById("userBox");
-
-const userEmail =
-document.getElementById("userEmail");
-
-const startButton =
-document.getElementById("startButton");
-
-
-let signupMode = false;
-
-
-/* =========================
-   OPEN LOGIN
-========================= */
-
-function openLogin(){
-
-    signupMode = false;
-
-    authTitle.innerText =
-    "🔐 Login";
-
-    authSubmit.innerText =
-    "Login";
-
-    switchText.innerText =
-    "Don't have an account? Sign Up";
-
-    authMessage.innerText = "";
-
-    modal.style.display =
-    "flex";
+        generateBtn.disabled = false;
+    }
 }
 
 
-/* =========================
-   OPEN SIGNUP
-========================= */
+generateBtn.addEventListener("click", async () => {
 
-function openSignup(){
+    const prompt = promptInput.value.trim();
 
-    signupMode = true;
+    if(!prompt){
 
-    authTitle.innerText =
-    "📝 Create Account";
+        statusText.textContent =
+            "⚠️ پہلے اپنا video prompt لکھیں۔";
 
-    authSubmit.innerText =
-    "Sign Up";
+        return;
+    }
 
-    switchText.innerText =
-    "Already have an account? Login";
+    let data = loadCredits();
 
-    authMessage.innerText = "";
+    if(data.credits <= 0){
 
-    modal.style.display =
-    "flex";
-}
+        statusText.textContent =
+            "❌ آج کے تمام credits استعمال ہو چکے ہیں۔";
 
+        return;
+    }
 
-/* =========================
-   LOGIN BUTTON
-========================= */
+    /*
+      Deduct one credit
+    */
 
-loginButton.onclick = function(e){
+    data.credits--;
 
-    e.preventDefault();
+    localStorage.setItem(
+        "ai_video_804_credits",
+        JSON.stringify(data)
+    );
 
-    openLogin();
+    updateUI();
 
-};
+    generateBtn.disabled = true;
 
+    statusText.textContent =
+        "⏳ Video generation request تیار ہو رہی ہے...";
 
-/* =========================
-   SIGNUP BUTTON
-========================= */
+    /*
+      Backend connection will be added here.
+    */
 
-signupButton.onclick = function(){
+    try{
 
-    openSignup();
+        const response = await fetch(
+            "/api/generate-video.js",
+            {
+                method:"POST",
 
-};
+                headers:{
+                    "Content-Type":"application/json"
+                },
 
+                body:JSON.stringify({
 
-/* =========================
-   START CREATING
-========================= */
+                    prompt:prompt,
 
-startButton.onclick = function(e){
+                    aspectRatio:
+                        document.getElementById("ratio").value,
 
-    e.preventDefault();
+                    duration:
+                        document.getElementById("duration").value
 
-    if(auth.currentUser){
-
-        alert(
-        "آپ login ہیں۔ Video generator اگلے مرحلے میں connect ہوگا۔"
+                })
+            }
         );
 
-    }else{
+        if(!response.ok){
 
-        openLogin();
-
-    }
-
-};
-
-
-/* =========================
-   CLOSE MODAL
-========================= */
-
-closeModal.onclick = function(){
-
-    modal.style.display =
-    "none";
-
-};
-
-
-/* =========================
-   SWITCH LOGIN / SIGNUP
-========================= */
-
-switchText.onclick = function(){
-
-    if(signupMode){
-
-        openLogin();
-
-    }else{
-
-        openSignup();
-
-    }
-
-};
-
-
-/* =========================
-   AUTH SUBMIT
-========================= */
-
-authSubmit.onclick = async function(){
-
-    const email =
-    emailInput.value.trim();
-
-    const password =
-    passwordInput.value;
-
-    authMessage.innerText = "";
-
-
-    if(!email || !password){
-
-        authMessage.innerText =
-        "Email اور password دونوں لکھیں۔";
-
-        return;
-    }
-
-
-    if(password.length < 6){
-
-        authMessage.innerText =
-        "Password کم از کم 6 characters کا ہونا چاہیے۔";
-
-        return;
-    }
-
-
-    authSubmit.disabled = true;
-
-
-    try{
-
-        if(signupMode){
-
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
+            throw new Error(
+                "Video API ابھی connected نہیں ہے."
             );
-
-            authMessage.style.color =
-            "#00ff9d";
-
-            authMessage.innerText =
-            "Account successfully created!";
-
-        }else{
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-            modal.style.display =
-            "none";
-
         }
+
+        const result = await response.json();
+
+        statusText.textContent =
+            "✅ Video generation request successfully sent!";
+
+        console.log(result);
 
     }catch(error){
 
-        console.error(error);
+        /*
+          Since the actual video API is not connected yet,
+          return the credit for this failed request.
+        */
 
-        authMessage.style.color =
-        "#ff6b7a";
+        data.credits++;
 
-        let message =
-        "Something went wrong.";
+        localStorage.setItem(
+            "ai_video_804_credits",
+            JSON.stringify(data)
+        );
 
-        if(error.code ===
-        "auth/email-already-in-use"){
+        updateUI();
 
-            message =
-            "یہ email پہلے سے registered ہے۔";
-
-        }
-
-        else if(error.code ===
-        "auth/invalid-email"){
-
-            message =
-            "Email درست نہیں ہے۔";
-
-        }
-
-        else if(error.code ===
-        "auth/weak-password"){
-
-            message =
-            "Password کمزور ہے۔ کم از کم 6 characters رکھیں۔";
-
-        }
-
-        else if(
-        error.code ===
-        "auth/invalid-credential"){
-
-            message =
-            "Email یا password غلط ہے۔";
-
-        }
-
-        else if(
-        error.code ===
-        "auth/user-not-found"){
-
-            message =
-            "یہ account موجود نہیں ہے۔ پہلے Sign Up کریں۔";
-
-        }
-
-        authMessage.innerText =
-        message;
-
+        statusText.textContent =
+            "ℹ️ Credit واپس کر دیا گیا۔ Video API ابھی connect نہیں ہوئی۔";
     }
 
+    generateBtn.disabled = false;
 
-    authSubmit.disabled = false;
-
-};
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-logoutButton.onclick = async function(){
-
-    try{
-
-        await signOut(auth);
-
-    }catch(error){
-
-        console.error(error);
-
-    }
-
-};
+});
 
 
-/* =========================
-   AUTH STATE
-========================= */
-
-onAuthStateChanged(
-    auth,
-    function(user){
-
-        if(user){
-
-            loginButton.style.display =
-            "none";
-
-            logoutButton.style.display =
-            "block";
-
-            userBox.style.display =
-            "block";
-
-            userEmail.innerText =
-            user.email;
-
-        }else{
-
-            loginButton.style.display =
-            "block";
-
-            logoutButton.style.display =
-            "none";
-
-            userBox.style.display =
-            "none";
-
-            userEmail.innerText =
-            "";
-
-        }
-
-    }
-);
+updateUI();
 
 </script>
 
