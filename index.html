@@ -14,7 +14,7 @@
   h1 { font-size: 36px; margin-bottom: 10px; }
   h1 span { color: #00d4ff; }
   .subtitle { color: #aaa; margin-bottom: 30px; }
-  .box { background: #1a1a24; padding: 30px; border-radius: 15px; border: 1px solid #2a2a3a; }
+  .box { background: #1a1a24; padding: 30px; border-radius: 15px; border: 1px solid #2a2a3a; margin-top: 20px; }
   textarea { width: 100%; height: 120px; background: #0a0a0f; border: 1px solid #333; color: white; padding: 12px; border-radius: 8px; font-size: 16px; margin-bottom: 15px; resize: none; }
   .options { display: flex; gap: 10px; margin-bottom: 20px; }
   select { flex: 1; padding: 12px; background: #0a0a0f; border: 1px solid #333; color: white; border-radius: 8px; }
@@ -24,19 +24,88 @@
   .info { color: #aaa; font-size: 14px; margin-top: 10px; }
   #result { margin-top: 25px; }
   video { width: 100%; border-radius: 10px; margin-top: 10px; border: 2px solid #00d4ff; }
-  .hidden { display: none; }
-  .user-info { color: #00d4ff; margin-bottom: 15px; font-size: 18px; }
-  input[type="text"] { width:100%; padding:12px; margin:10px 0; background:#0a0a0f; border:1px solid #333; color:white; border-radius:8px; font-size:16px; }
-  .examples { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px; }
-  .tag { background: #2a2a3a; padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; }
 </style>
 </head>
 <body>
   <div class="navbar">
     <div class="logo">🤖 AI VIDEO 804</div>
-    <button class="login-btn" id="navLoginBtn">Login</button>
+    <button class="login-btn" onclick="alert('ڈیمو ویب سائٹ ہے۔ بغیر Login کے بھی استعمال کر سکتے ہو')">Login</button>
   </div>
 
   <div class="container">
     <h1>Create <span>Any AI Video</span><br>From Text</h1>
-    <p class="subtitle">کارٹون، ریال، اینیمے - جو بھی
+    <p class="subtitle">کارٹون، ریال، اینیمے - جو بھی لکھو گے وہی ویڈیو بنے گی</p>
+
+    <!-- یہ والا باکس آپ کی سائٹ پر نہیں تھا -->
+    <div class="box">
+      <textarea id="prompt" placeholder="یہاں لکھو: A cartoon cat dancing"></textarea>
+      
+      <div class="options">
+        <select id="aspect">
+          <option value="9:16">9:16 — Shorts / Reels</option>
+          <option value="16:9">16:9 — YouTube</option>
+          <option value="1:1">1:1 — Square</option>
+        </select>
+        <select id="duration">
+          <option value="5">5 Seconds</option>
+          <option value="10">10 Seconds</option>
+        </select>
+      </div>
+
+      <button class="generate-btn" id="generateBtn">🚀 Generate Video</button>
+      
+      <p class="credits" id="credits">🎁 Daily Credits: 10/10</p>
+      <p class="info">ℹ️ ہر ویڈیو پر 1 Credit۔ 30 سیکنڈ لگتے ہیں</p>
+      
+      <div id="result"></div>
+    </div>
+  </div>
+
+<script>
+let dailyCredits = 10;
+document.getElementById('credits').innerText = `🎁 Daily Credits: ${dailyCredits}/10`;
+
+document.getElementById('generateBtn').addEventListener('click', async () => {
+  const userPrompt = document.getElementById('prompt').value;
+  const aspect = document.getElementById('aspect').value;
+  const resultDiv = document.getElementById('result');
+  const creditsEl = document.getElementById('credits');
+  const btn = document.getElementById('generateBtn');
+  
+  if(!userPrompt) return alert('پہلے پرامپٹ لکھیں');
+  if(dailyCredits <= 0) return alert('آج کے Credits ختم۔ کل آئیں');
+  
+  btn.disabled = true;
+  btn.innerText = '⏳ Generating...';
+  resultDiv.innerHTML = '<p>⏳ ویڈیو بنا رہی ہے... 30 سیکنڈ لگیں گے</p>';
+  
+  let width = 576, height = 1024;
+  if(aspect === '16:9') { width = 1024; height = 576; }
+  if(aspect === '1:1') { width = 1024; height = 1024; }
+  
+  const finalPrompt = `${userPrompt}, high quality, cinematic, smooth motion, 4k`;
+  const apiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=wan2.1&animate=true&nologo=true&width=${width}&height=${height}`;
+  
+  try {
+    const res = await fetch(apiUrl);
+    if(res.ok){
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      resultDiv.innerHTML = `<video src="${url}" controls autoplay loop playsinline></video>`;
+      
+      dailyCredits--;
+      creditsEl.innerText = `🎁 Daily Credits: ${dailyCredits}/10`;
+    } else {
+      resultDiv.innerHTML = `<p style="color:red">❌ Error ${res.status}. 1 منٹ بعد دوبارہ ٹرائی کریں</p>`;
+    }
+  } catch(err) {
+    resultDiv.innerHTML = '<p style="color:red">❌ نیٹ سلو ہے</p>';
+  }
+  
+  btn.disabled = false;
+  btn.innerText = '🚀 Generate Video';
+});
+</script>
+
+</body>
+</html>
