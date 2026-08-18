@@ -1,47 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI VIDEO 804</title>
 <style>
-body { background: #05050a; color: white; font-family: Arial; margin:0; padding:20px; text-align:center; }
-.logo { color:#00d4ff; font-size:22px; font-weight:bold; margin-bottom:20px; }
-h1 { font-size:30px; }
-h1 span { color:#00d4ff; }
-.box { background:#111122; padding:20px; border-radius:15px; max-width:600px; margin:20px auto; }
-textarea { width:100%; height:100px; background:#0a0a14; border:1px solid #333; color:white; padding:10px; border-radius:8px; font-size:16px; }
-button { width:100%; padding:15px; background:linear-gradient(90deg,#00c8ff,#0066ff); border:none; color:white; font-size:18px; font-weight:bold; border-radius:10px; margin-top:15px; cursor:pointer; }
-video { width:100%; margin-top:20px; border-radius:10px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial; }
+  body { background: #05050a; color: white; min-height: 100vh; padding: 20px; }
+  .logo { text-align: center; color: #00d4ff; font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+  .container { max-width: 600px; margin: 0 auto; text-align: center; }
+  h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+  h1 span { color: #00d4ff; }
+  .subtitle { color: #a0a0b0; margin-bottom: 30px; font-size: 15px; }
+  .box { background: #111122; padding: 25px; border-radius: 16px; border: 1px solid #222233; }
+  textarea { width: 100%; height: 120px; background: #0a0a14; border: 1px solid #2a2a3a; color: white; padding: 14px; border-radius: 10px; font-size: 16px; margin-bottom: 18px; resize: none; }
+  .generate-btn { width: 100%; padding: 15px; background: linear-gradient(90deg, #00c8ff, #0066ff); border: none; color: white; font-size: 17px; font-weight: bold; border-radius: 10px; cursor: pointer; }
+  .generate-btn:disabled { opacity: 0.6; }
+  #result { margin-top: 20px; min-height: 200px; background: #0a0a14; border-radius: 10px; padding:10px; border: 1px solid #222233; }
+  video { width: 100%; border-radius: 10px; }
 </style>
 </head>
 <body>
 
 <div class="logo">🤖 AI VIDEO 804</div>
-<h1>Create <span>Any AI Video</span><br>From Text</h1>
-<p>کارٹون، ریال، اینیمے - جو بھی لکھو گے وہی ویڈیو بنے گی</p>
 
-<div class="box">
-  <textarea id="prompt" placeholder="یہاں لکھو: Pakistan flag waving">Pakistan flag waving</textarea>
-  <button onclick="makeVideo()">🚀 Generate Video</button>
-  <div id="result"></div>
+<div class="container">
+  <h1>Create <span>Any AI Video</span><br>From Text</h1>
+  <p class="subtitle">کارٹون، ریال، اینیمے - جو بھی لکھو گے وہی ویڈیو بنے گی</p>
+
+  <div class="box">
+    <textarea id="prompt">Pakistan flag waving</textarea>
+    <button class="generate-btn" onclick="makeVideo()">🚀 Generate Video</button>
+    <div id="result"><p style="color:#444;">ویڈیو یہاں آئے گی</p></div>
+  </div>
 </div>
 
 <script>
 async function makeVideo(){
   const prompt = document.getElementById('prompt').value;
   const result = document.getElementById('result');
-  if(!prompt) return alert('پہلے کچھ لکھو');
+  const btn = document.querySelector('.generate-btn');
   
-  result.innerHTML = '⏳ 40 سیکنڈ ویٹ کرو...';
-  document.querySelector('button').disabled = true;
+  if(!prompt) return alert('پہلے پرامپٹ لکھیں');
   
-  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt + ' video, cinematic, 4k')}.mp4?model=wan2.1&animate=true`;
-  
-  result.innerHTML = `<video src="${url}" controls autoplay loop></video>`;
-  document.querySelector('button').disabled = false;
-}
-</script>
-
-</body>
-</html>
+  btn.disabled = true;
+  btn.innerText = '⏳ Generating... 40s';
+  result.innerHTML = '<p style="color:#00d4ff
