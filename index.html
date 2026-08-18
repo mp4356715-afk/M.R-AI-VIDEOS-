@@ -1,63 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI VIDEO 804</title>
-<style>
-body{background:#0a0a1a;color:white;font-family:sans-serif;text-align:center;padding:20px}
-h1{color:#00d4ff;font-size:32px;text-shadow:0 0 10px #00d4ff}
-.btn{background:linear-gradient(90deg,#00d4ff,#0099ff);border:none;padding:15px 30px;border-radius:12px;color:white;font-size:18px;margin:10px;cursor:pointer;width:90%;font-weight:bold}
-textarea{width:90%;height:120px;background:#1a1a2e;border:2px solid #00d4ff;border-radius:10px;color:white;padding:15px;font-size:16px}
-#result img{max-width:90%;border-radius:15px;margin-top:20px;border:3px solid #00ff88;box-shadow:0 0 20px #00ff88}
-#loading{color:#00ff88;font-size:18px;display:none}
-.examples{color:#aaa;font-size:14px;margin:10px}
-</style>
-</head>
-<body>
-
-<h1>🤖 AI VIDEO 804</h1>
-<p>جو دل میں آئے لکھو، وہی تصویر بن جائے گی</p>
-
-<textarea id="prompt" placeholder="Example: 
-1. Pakistani flag waving
-2. Shani riding a lion
-3. Beautiful girl in garden
-4. Car in rain"></textarea><br>
-
-<button class="btn" onclick="generate()">🚀 Generate AI Image</button>
-<p id="loading">تصویر بن رہی ہے... 15 سیکنڈ ویٹ کرو</p>
-<div id="result"></div>
-
-<p class="examples">
-<b>مثال:</b> Shani with flag, Cat playing, Mountain, Logo
-</p>
-
-<script>
-async function generate(){
-  let prompt = document.getElementById('prompt').value;
-  if(prompt === ""){ alert("پہلے کچھ لکھو بھائی"); return; }
-  
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('result').innerHTML = "";
-  
-  // Flux model سب سے اچھا ہے۔ ہر چیز بناتا ہے
-  let finalPrompt = `${prompt}, ultra realistic, 4k, high detail, sharp focus`;
-  
-  let url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=flux&width=1024&height=1024`;
-  
-  let img = new Image();
-  img.src = url;
-  img.onload = function(){
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('result').innerHTML = `<img src="${url}" /> <br> <a href="${url}" download class="btn">📥 Download Image</a>`;
+export default async function handler(req, res) {
+  // صرف POST ریکویسٹ الاؤ ہے
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
-  img.onerror = function(){
-    document.getElementById('loading').style.display = 'none';
-    alert("سرور مصروف ہے۔ 10 سیکنڈ بعد دوبارہ کوشش کرو");
+
+  const { prompt } = req.body;
+  if (!prompt) {
+    return res.status(400).json({ error: 'Prompt required' });
+  }
+
+  try {
+    // یہاں ہم پرامپٹ کو مضبوط کر رہے ہیں تاکہ گڑبڑ نہ ہو
+    const finalPrompt = `A perfect rectangular national flag of ${prompt}, centered, waving in the wind, fabric texture, photorealistic, 8k, studio lighting, no text, no logo, no abstract, no people, no human, no face`;
+    
+    // Pollinations کا فری API
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=1024&height=1024&model=flux&nologo=true&seed=12345&enhance=true`;
+    
+    console.log("Generating:", finalPrompt);
+    const imageResponse = await fetch(url);
+
+    if (!imageResponse.ok) {
+      throw new Error(`Image fetch failed with status: ${imageResponse.status}`);
+    }
+
+    const imageBuffer = await imageResponse.arrayBuffer();
+    
+    // تصویر واپس بھیجو
+    res.setHeader('Content-Type', 'image/png');
+    res.setHeader('Cache-Control', 'no-store');
+    res.send(Buffer.from(imageBuffer));
+
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: 'Failed to generate image. Please try again.' });
   }
 }
-</script>
-
-</body>
-</html>
