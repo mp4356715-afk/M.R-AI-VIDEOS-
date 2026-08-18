@@ -3,59 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Flag Generator</title>
+<title>AI VIDEO 804</title>
 <style>
-  body { font-family: 'Segoe UI', Arial; text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; min-height: 100vh; }
-  .box { background: white; color: #333; padding: 30px; border-radius: 15px; max-width: 500px; margin: auto; }
-  input { padding: 12px; width: 80%; border-radius: 8px; border: 2px solid #667eea; font-size: 16px; margin-bottom: 15px; }
-  button { padding: 12px 25px; margin: 5px; border: none; background: #667eea; color: white; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; }
-  img, video { margin-top: 20px; max-width: 100%; border-radius: 10px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial; }
+  body { background: #0a0a0f; color: white; min-height: 100vh; }
+  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: #000; }
+  .logo { font-size: 22px; font-weight: bold; color: #00d4ff; }
+  .login-btn { padding: 8px 20px; border: 1px solid #00d4ff; background: transparent; color: #00d4ff; border-radius: 8px; cursor: pointer; }
+  .container { max-width: 600px; margin: 40px auto; padding: 20px; text-align: center; }
+  h1 { font-size: 36px; margin-bottom: 10px; }
+  h1 span { color: #00d4ff; }
+  .subtitle { color: #aaa; margin-bottom: 30px; }
+  .box { background: #1a1a24; padding: 25px; border-radius: 15px; border: 1px solid #2a2a3a; }
+  textarea { width: 100%; height: 120px; background: #0a0a0f; border: 1px solid #333; color: white; padding: 12px; border-radius: 8px; font-size: 16px; margin-bottom: 15px; }
+  .options { display: flex; gap: 10px; margin-bottom: 15px; }
+  select { flex: 1; padding: 10px; background: #0a0a0f; border: 1px solid #333; color: white; border-radius: 8px; }
+  .generate-btn { width: 100%; padding: 14px; background: linear-gradient(90deg, #00d4ff, #0066ff); border: none; color: white; font-size: 18px; font-weight: bold; border-radius: 10px; cursor: pointer; }
+  .generate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .credits { color: #00ff88; margin-top: 10px; font-weight: bold; }
+  .info { color: #aaa; font-size: 14px; margin-top: 10px; }
+  #result { margin-top: 20px; }
+  video, img { width: 100%; border-radius: 10px; margin-top: 10px; }
 </style>
 </head>
 <body>
-  <div class="box">
-    <h1>AI Flag Generator 🇵🇰</h1>
-    <input type="text" id="prompt" placeholder="مثال: Pakistan flag">
-    <br>
-    <button onclick="generate('image')">🖼️ تصویر بناؤ</button>
-    <button onclick="generate('video')">🎬 ویڈیو بناؤ</button>
-    <div id="result"></div>
-  </div>
-
-<script>
-async function generate(type) {
-  const prompt = document.getElementById('prompt').value;
-  if(!prompt) return alert('پہلے جھنڈے کا نام لکھیں');
-  
-  const resultDiv = document.getElementById('result');
-  resultDiv.innerHTML = `<p>⏳ بنا رہا ہوں... 20 سیکنڈ لگ سکتے ہیں</p>`;
-  
-  // یہاں ڈائریکٹ API کال ہو رہی ہے۔ کوئی Backend نہیں
-  const finalPrompt = type === 'video' 
-    ? `A realistic rectangular national flag of ${prompt} waving smoothly on a flagpole in the wind, cinematic, 4k, blue sky. No people, no text.`
-    : `A perfect rectangular national flag of ${prompt}, waving on a flagpole, photorealistic, blue sky. No people, no face.`;
-
-  const apiUrl = type === 'video'
-    ? `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?model=wan2.1&animate=true&nologo=true&width=1024&height=576`
-    : `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=1024&height=1024&model=flux&nologo=true`;
-
-  try {
-    const res = await fetch(apiUrl);
-    if(res.ok){
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      if(type === 'video'){
-        resultDiv.innerHTML = `<video src="${url}" controls autoplay loop></video>`;
-      } else {
-        resultDiv.innerHTML = `<img src="${url}" />`;
-      }
-    } else {
-      resultDiv.innerHTML = '<p style="color:red">Error: دوبارہ ٹرائی کریں</p>';
-    }
-  } catch(err) {
-    resultDiv.innerHTML = '<p style="color:red">نیٹ کا مسئلہ ہے</p>';
-  }
-}
-</script>
-</body>
-</html>
+  <div class="navbar">
+    <div class="logo">🤖 AI VIDEO 804</div>
+    <button class="login-btn">Login</button>
