@@ -3,42 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI VIDEO 804</title>
+<title>AI VIDEO 804 - Flag Maker</title>
 <style>
 body{background:#0a0a1a;color:white;font-family:sans-serif;text-align:center;padding:20px}
 h1{color:#00d4ff;font-size:32px}
-.btn{background:linear-gradient(90deg,#00d4ff,#0099ff);border:none;padding:15px 30px;border-radius:12px;color:white;font-size:18px;margin:10px;cursor:pointer;width:90%;text-decoration:none;display:inline-block}
-textarea{width:90%;height:120px;background:#1a1a2e;border:1px solid #00d4ff;border-radius:10px;color:white;padding:10px;font-size:16px}
-#result img{max-width:90%;border-radius:12px;margin-top:20px;border:2px solid #00d4ff}
-#loading{display:none;color:#00ff88}
+.btn{background:linear-gradient(90deg,#00d4ff,#0099ff);border:none;padding:15px 30px;border-radius:12px;color:white;font-size:18px;margin:10px;cursor:pointer;width:90%}
+textarea{width:90%;height:100px;background:#1a1a2e;border:2px solid #00d4ff;border-radius:10px;color:white;padding:10px;font-size:16px}
+#result img{max-width:90%;border-radius:12px;margin-top:20px;border:3px solid #00ff88}
+#loading{color:#00ff88;font-size:18px;display:none}
 </style>
 </head>
 <body>
 
-<h1>🤖 AI VIDEO 804</h1>
-<p>ابھی Text to Image کام کرے گا۔ ویڈیو جلد آئے گی</p>
+<h1>🤖 AI FLAG MAKER 804</h1>
+<p>صرف جھنڈے بنے گا۔ لکھو: Indian flag / Pakistan flag</p>
 
-<textarea id="prompt" placeholder="Example: Indian flag, Pakistan flag"></textarea><br>
+<textarea id="prompt" placeholder="Example: Pakistan flag waving"></textarea><br>
 
-<button class="btn" onclick="generate()">🚀 Generate AI Image</button>
-<p id="loading">تصویر بن رہی ہے... 10 سیکنڈ</p>
+<button class="btn" onclick="generate()">🚀 Generate Flag</button>
+<p id="loading">تصویر بن رہی ہے... ویٹ کرو</p>
 <div id="result"></div>
 
 <script>
 async function generate(){
   let prompt = document.getElementById('prompt').value;
-  if(prompt === ""){ alert("پہلے آئیڈیا لکھو"); return; }
+  if(prompt === ""){ alert("پہلے جھنڈے کا نام لکھو"); return; }
   
   document.getElementById('loading').style.display = 'block';
   document.getElementById('result').innerHTML = "";
   
-  // زبردستی جھنڈا بنوانے کے لیے
-  let finalPrompt = prompt + ", flag, waving, no people, no girl, no man, clear flag design, 4k";
+  // یہ سب سے سخت پرامپٹ ہے۔ صرف جھنڈا آئے گا
+  let finalPrompt = `A ${prompt}, national flag, waving in the wind, cloth fabric, no human, no person, no girl, no boy, no face, no body, only flag, realistic photo, 4k, high detail`;
   
-  let url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=512&height=512`;
+  let url = `https://image.pollinations.ai/prompt/${encodeURIComponent(finalPrompt)}?width=1024&height=1024&seed=-1`;
   
-  document.getElementById('result').innerHTML = `<img src="${url}" /> <br> <a href="${url}" download class="btn">Download Image</a>`;
-  document.getElementById('loading').style.display = 'none';
+  let img = new Image();
+  img.src = url;
+  img.onload = function(){
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').innerHTML = `<img src="${url}" /> <br> <a href="${url}" download class="btn">📥 Download Flag</a>`;
+  }
 }
 </script>
 
