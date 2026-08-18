@@ -3,46 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI VIDEO 804</title>
+<title>AI VIDEO 804 - Free AI Video Generator</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID" crossorigin="anonymous"></script>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial; }
-  body { background: #05050a; color: white; min-height: 100vh; padding: 20px; }
-  .logo { text-align: center; color: #00d4ff; font-size: 22px; font-weight: bold; margin-bottom: 20px; }
-  .container { max-width: 600px; margin: 0 auto; text-align: center; }
-  h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
-  h1 span { color: #00d4ff; }
-  .subtitle { color: #a0a0b0; margin-bottom: 30px; font-size: 15px; }
-  .box { background: #111122; padding: 25px; border-radius: 16px; border: 1px solid #222233; }
-  textarea { width: 100%; height: 120px; background: #0a0a14; border: 1px solid #2a2a3a; color: white; padding: 14px; border-radius: 10px; font-size: 16px; margin-bottom: 18px; resize: none; }
-  .generate-btn { width: 100%; padding: 15px; background: linear-gradient(90deg, #00c8ff, #0066ff); border: none; color: white; font-size: 17px; font-weight: bold; border-radius: 10px; cursor: pointer; }
-  .generate-btn:disabled { opacity: 0.6; }
-  #result { margin-top: 20px; min-height: 200px; background: #0a0a14; border-radius: 10px; padding:10px; border: 1px solid #222233; }
-  video { width: 100%; border-radius: 10px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#05050a;color:#fff;font-family:'Segoe UI',Arial;padding:10px}
+.logo{text-align:center;font-size:26px;font-weight:bold;color:#00d4ff;margin:15px 0}
+h1{text-align:center;font-size:28px} h1 span{color:#00d4ff}
+.ad-box{max-width:728px;margin:15px auto;text-align:center;min-height:90px;background:#0a0a14;border-radius:10px;padding:10px}
+.container{max-width:700px;margin:20px auto;background:#111122;padding:25px;border-radius:20px;border:1px solid #222}
+.credits{background:#1a1a2e;padding:12px;border-radius:10px;text-align:center;margin-bottom:15px;color:#00ff88;font-weight:bold}
+textarea{width:100%;height:120px;background:#0a0a14;border:1px solid #333;color:#fff;padding:15px;border-radius:10px;font-size:16px;margin-bottom:15px}
+button{width:100%;padding:16px;background:linear-gradient(90deg,#00c8ff,#0066ff);border:none;color:#fff;font-size:18px;font-weight:bold;border-radius:12px;cursor:pointer}
+button:disabled{background:#333;cursor:not-allowed}
+#result{margin-top:15px;text-align:center}
+#result video{width:100%;border-radius:10px;margin-top:10px}
+.loader{display:none}
 </style>
 </head>
 <body>
-
 <div class="logo">🤖 AI VIDEO 804</div>
+<h1>Create <span>Free AI Videos</span></h1>
+
+<!-- Ad Top -->
+<div class="ad-box">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ID" data-ad-slot="111" data-ad-format="auto"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 <div class="container">
-  <h1>Create <span>Any AI Video</span><br>From Text</h1>
-  <p class="subtitle">کارٹون، ریال، اینیمے - جو بھی لکھو گے وہی ویڈیو بنے گی</p>
-
-  <div class="box">
-    <textarea id="prompt">Pakistan flag waving</textarea>
-    <button class="generate-btn" onclick="makeVideo()">🚀 Generate Video</button>
-    <div id="result"><p style="color:#444;">ویڈیو یہاں آئے گی</p></div>
+  <div class="credits">🎁 آج کے کریڈٹ: <span id="count">5</span> / 5 باقی ہیں</div>
+  <textarea id="prompt" placeholder="مثال: A cat dancing in Karachi street"></textarea>
+  <button id="btn" onclick="makeVideo()">🚀 Generate Free Video</button>
+  
+  <div id="result">
+    <div class="loader" id="loader">⏳ ویڈیو بن رہی ہے... 40 سیکنڈ لگیں گے</div>
   </div>
 </div>
 
+<!-- Ad Bottom -->
+<div class="ad-box">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-YOUR_ID" data-ad-slot="222" data-ad-format="auto"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
 <script>
+let credits = localStorage.getItem('videoCredits');
+let lastDate = localStorage.getItem('lastDate');
+let today = new Date().toDateString();
+
+if(lastDate != today){
+  credits = 5;
+  localStorage.setItem('lastDate', today);
+}
+if(credits == null) credits = 5;
+
+document.getElementById('count').innerText = credits;
+if(credits <= 0) document.getElementById('btn').disabled = true;
+
 async function makeVideo(){
-  const prompt = document.getElementById('prompt').value;
-  const result = document.getElementById('result');
-  const btn = document.querySelector('.generate-btn');
+  let p = document.getElementById('prompt').value;
+  if(p==""){alert("پہلے پرامپٹ لکھیں"); return;}
+  if(credits <= 0){alert("آج کے 5 کریڈٹ ختم۔ کل دوبارہ آئیں"); return;}
   
-  if(!prompt) return alert('پہلے پرامپٹ لکھیں');
+  credits--;
+  localStorage.setItem('videoCredits', credits);
+  document.getElementById('count').innerText = credits;
+  document.getElementById('loader').style.display = 'block';
+  document.getElementById('btn').disabled = true;
   
-  btn.disabled = true;
-  btn.innerText = '⏳ Generating... 40s';
-  result.innerHTML = '<p style="color:#00d4ff
+  // Pollinations AI - فری ویڈیو API
+  let url = `https://pollinations.ai/video/` + encodeURIComponent(p);
+  
+  document.getElementById('result').innerHTML = `
+    <p style="color:#00ff88">✅ ویڈیو تیار ہے!</p>
+    <video controls autoplay src="${url}"></video>
+    <a href="${url}" download style="color:#00d4ff">📥 Download Video</a>
+  `;
+  
+  if(credits <= 0) document.getElementById('btn').disabled = true;
+  else document.getElementById('btn').disabled = false;
+}
+</script>
+</body>
+</html>
