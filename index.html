@@ -1,45 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>AI VIDEO 804 - AI Video Generator</title>
+<title>AI VIDEO 804</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-
-/* =========================
-   BODY
-========================= */
-
 body{
     font-family:Arial,Helvetica,sans-serif;
     background:#070b18;
-    color:#ffffff;
+    color:white;
     min-height:100vh;
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 header{
-    width:100%;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -48,21 +29,15 @@ header{
     background:#080d1c;
     position:sticky;
     top:0;
-    z-index:1000;
+    z-index:100;
 }
-
-
-/* LOGO */
 
 .logo{
-    font-size:24px;
-    font-weight:bold;
     color:#00d9ff;
+    font-size:23px;
+    font-weight:bold;
     text-decoration:none;
 }
-
-
-/* HEADER BUTTONS */
 
 .header-buttons{
     display:flex;
@@ -70,161 +45,87 @@ header{
     gap:10px;
 }
 
-
-/* ADD APP */
-
-.add-app{
-    padding:10px 17px;
-    border-radius:10px;
-    background:linear-gradient(
-        90deg,
-        #00ff9d,
-        #00bfff
-    );
-    color:#06111e;
+.btn{
+    border:none;
+    cursor:pointer;
     text-decoration:none;
     font-weight:bold;
-    transition:0.3s;
-}
-
-.add-app:hover{
-    transform:translateY(-2px);
-}
-
-
-/* LOGIN */
-
-.login{
-    padding:10px 18px;
-    border:1px solid #00d9ff;
     border-radius:10px;
-    color:#ffffff;
-    text-decoration:none;
-    transition:0.3s;
+    padding:10px 16px;
 }
 
-.login:hover{
-    background:#00d9ff;
+.add-app{
+    background:linear-gradient(90deg,#00ff9d,#00bfff);
     color:#06111e;
 }
 
+.login-btn{
+    border:1px solid #00d9ff;
+    color:white;
+    background:transparent;
+}
 
-/* =========================
-   HERO
-========================= */
+.logout-btn{
+    display:none;
+    background:#ff4d67;
+    color:white;
+}
 
 .hero{
     text-align:center;
-    padding:90px 20px 70px;
-    background:
-        radial-gradient(
-            circle at top,
-            #10264a 0%,
-            #070b18 55%
-        );
+    padding:85px 20px 65px;
+    background:radial-gradient(circle at top,#10264a,#070b18 60%);
 }
-
 
 .hero h1{
     font-size:48px;
     line-height:1.15;
-    margin-bottom:20px;
 }
-
 
 .hero h1 span{
     color:#00d9ff;
 }
 
-
 .hero p{
+    max-width:650px;
+    margin:20px auto;
     color:#aeb8cc;
     font-size:18px;
-    max-width:650px;
-    margin:0 auto;
     line-height:1.7;
 }
 
-
-/* START BUTTON */
-
 .start{
     display:inline-block;
-    margin-top:30px;
+    margin-top:20px;
     padding:16px 35px;
-    background:
-        linear-gradient(
-            90deg,
-            #00d9ff,
-            #006cff
-        );
-    color:#ffffff;
-    text-decoration:none;
     border-radius:12px;
-    font-size:18px;
+    color:white;
+    text-decoration:none;
     font-weight:bold;
-    box-shadow:
-        0 10px 30px
-        rgba(0,160,255,0.25);
-    transition:0.3s;
+    background:linear-gradient(90deg,#00d9ff,#006cff);
 }
 
-.start:hover{
-    transform:translateY(-3px);
+.user-box{
+    display:none;
+    max-width:650px;
+    margin:25px auto 0;
+    padding:15px;
+    border:1px solid #20385b;
+    background:#0d1629;
+    border-radius:12px;
+    color:#b9c7dc;
 }
 
-
-/* =========================
-   STATS
-========================= */
-
-.stats{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    padding:10px 6% 50px;
+.user-box strong{
+    color:#00ff9d;
 }
-
-
-.stat{
-    min-width:180px;
-    padding:20px;
-    text-align:center;
-    background:#10172b;
-    border:1px solid #202944;
-    border-radius:15px;
-}
-
-
-.stat strong{
-    display:block;
-    font-size:28px;
-    color:#00d9ff;
-}
-
-
-.stat span{
-    color:#8995ab;
-    font-size:14px;
-}
-
-
-/* =========================
-   FEATURES
-========================= */
 
 .features{
     display:grid;
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(220px,1fr)
-        );
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-    padding:30px 6% 60px;
+    padding:35px 6% 60px;
 }
-
 
 .card{
     background:#10172b;
@@ -232,82 +133,48 @@ header{
     border-radius:18px;
     padding:28px 22px;
     text-align:center;
-    transition:0.3s;
 }
 
-
-.card:hover{
-    transform:translateY(-5px);
-    border-color:#00d9ff;
-}
-
-
-.card .icon{
-    font-size:42px;
+.icon{
+    font-size:40px;
     margin-bottom:15px;
 }
 
-
 .card h3{
-    font-size:20px;
     margin-bottom:10px;
 }
-
 
 .card p{
     color:#9da8bd;
     line-height:1.6;
-    font-size:15px;
 }
-
-
-/* =========================
-   FREE SECTION
-========================= */
 
 .free{
     text-align:center;
     margin:20px 6% 70px;
     padding:45px 20px;
-    background:
-        linear-gradient(
-            135deg,
-            #101c35,
-            #0b1327
-        );
+    background:linear-gradient(135deg,#101c35,#0b1327);
     border:1px solid #202944;
     border-radius:22px;
 }
 
-
 .free h2{
     color:#00ff9d;
-    font-size:30px;
     margin-bottom:15px;
 }
 
-
 .free p{
     color:#aeb8cc;
-    margin-bottom:10px;
 }
-
-
-/* =========================
-   RATIO SECTION
-========================= */
 
 .ratios{
     text-align:center;
-    padding:20px 6% 70px;
+    padding:10px 6% 60px;
 }
-
 
 .ratios h2{
-    font-size:30px;
     margin-bottom:25px;
 }
-
 
 .ratio-container{
     display:flex;
@@ -315,7 +182,6 @@ header{
     gap:20px;
     flex-wrap:wrap;
 }
-
 
 .ratio-box{
     width:230px;
@@ -325,77 +191,134 @@ header{
     padding:25px;
 }
 
-
 .ratio-preview{
     margin:0 auto 15px;
     border:2px solid #00d9ff;
     border-radius:8px;
 }
 
-
 .vertical{
     width:80px;
     height:140px;
 }
-
 
 .horizontal{
     width:150px;
     height:85px;
 }
 
-
-.ratio-box h3{
-    margin-bottom:8px;
-}
-
-
 .ratio-box p{
     color:#8995ab;
-    font-size:14px;
+    margin-top:8px;
 }
-
-
-/* =========================
-   FOOTER
-========================= */
 
 footer{
     text-align:center;
     padding:35px 20px;
     color:#71809c;
     border-top:1px solid #202944;
-    background:#050812;
 }
 
+/* LOGIN MODAL */
 
-footer strong{
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:400px;
+    background:#10172b;
+    border:1px solid #263657;
+    border-radius:20px;
+    padding:28px;
+    position:relative;
+}
+
+.modal-box h2{
+    text-align:center;
     color:#00d9ff;
+    margin-bottom:20px;
 }
 
+.close{
+    position:absolute;
+    right:18px;
+    top:15px;
+    font-size:25px;
+    cursor:pointer;
+    color:#9da8bd;
+}
 
-/* =========================
-   MOBILE
-========================= */
+.input{
+    width:100%;
+    padding:14px;
+    margin-bottom:12px;
+    border-radius:10px;
+    border:1px solid #30405f;
+    background:#080d1c;
+    color:white;
+    outline:none;
+}
 
-@media(max-width:700px){
+.input:focus{
+    border-color:#00d9ff;
+}
+
+.auth-submit{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,#00d9ff,#006cff);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.switch{
+    text-align:center;
+    margin-top:15px;
+    color:#9da8bd;
+}
+
+.switch span{
+    color:#00d9ff;
+    cursor:pointer;
+}
+
+.message{
+    text-align:center;
+    margin-top:12px;
+    color:#ff6b7a;
+    font-size:14px;
+}
+
+@media(max-width:650px){
 
     header{
-        padding:15px 4%;
+        padding:14px 4%;
     }
 
     .logo{
-        font-size:18px;
+        font-size:17px;
     }
 
     .header-buttons{
-        gap:6px;
+        gap:5px;
     }
 
-    .add-app,
-    .login{
-        padding:8px 10px;
-        font-size:12px;
+    .btn{
+        padding:8px 9px;
+        font-size:11px;
     }
 
     .hero{
@@ -412,47 +335,12 @@ footer strong{
 
     .start{
         width:90%;
-        max-width:330px;
     }
-
-    .free h2{
-        font-size:23px;
-    }
-
 }
-
-
-/* VERY SMALL MOBILE */
-
-@media(max-width:400px){
-
-    .logo{
-        font-size:16px;
-    }
-
-    .add-app,
-    .login{
-        padding:7px 8px;
-        font-size:11px;
-    }
-
-    .hero h1{
-        font-size:29px;
-    }
-
-}
-
 </style>
-
 </head>
 
-
 <body>
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header>
 
@@ -460,277 +348,600 @@ footer strong{
 🤖 AI VIDEO 804
 </a>
 
-
 <div class="header-buttons">
 
-<a href="#" class="add-app">
+<a href="#" class="btn add-app">
 📱 Add App
 </a>
 
-
-<a href="#" class="login">
+<button class="btn login-btn" id="loginButton">
 🔐 Login
-</a>
+</button>
+
+<button class="btn logout-btn" id="logoutButton">
+Logout
+</button>
 
 </div>
-
 </header>
 
-
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
 <h1>
-Create
-<span>AI Videos</span>
-<br>
+Create <span>AI Videos</span><br>
 From Your Ideas
 </h1>
 
-
 <p>
-اپنا خیال لکھیں اور AI کے ذریعے
-cinematic videos بنانے کے لیے تیار ہوں۔
-YouTube، Shorts، TikTok اور Reels کے لیے۔
+اپنا خیال لکھیں اور AI کے ذریعے cinematic videos
+بنانے کے لیے تیار ہوں۔ YouTube، Shorts، TikTok اور Reels کے لیے۔
 </p>
 
-
-<a href="#" class="start">
+<a href="#" class="start" id="startButton">
 🚀 Start Creating
 </a>
 
-</section>
-
-
-
-<!-- =========================
-     STATS
-========================= -->
-
-<section class="stats">
-
-<div class="stat">
-
-<strong>10</strong>
-
-<span>
-Free Videos / Day
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>9:16</strong>
-
-<span>
-Short Videos
-</span>
-
-</div>
-
-
-<div class="stat">
-
-<strong>16:9</strong>
-
-<span>
-YouTube Videos
-</span>
-
+<div class="user-box" id="userBox">
+Welcome, <strong id="userEmail"></strong>
 </div>
 
 </section>
 
-
-
-<!-- =========================
-     FEATURES
-========================= -->
 
 <section class="features">
 
+<div class="card">
+<div class="icon">🎬</div>
+<h3>AI Video Generator</h3>
+<p>اپنا prompt لکھیں اور AI video creation شروع کریں۔</p>
+</div>
 
 <div class="card">
-
-<div class="icon">
-🎬
+<div class="icon">📱</div>
+<h3>9:16 Shorts</h3>
+<p>TikTok، Reels اور YouTube Shorts کے لیے۔</p>
 </div>
-
-<h3>
-AI Video Generator
-</h3>
-
-<p>
-اپنا prompt لکھیں اور AI
-video creation شروع کریں۔
-</p>
-
-</div>
-
-
 
 <div class="card">
-
-<div class="icon">
-📱
+<div class="icon">🖥️</div>
+<h3>16:9 YouTube</h3>
+<p>YouTube اور landscape videos کے لیے۔</p>
 </div>
-
-<h3>
-9:16 Shorts
-</h3>
-
-<p>
-TikTok، Reels اور
-YouTube Shorts کے لیے۔
-</p>
-
-</div>
-
-
 
 <div class="card">
-
-<div class="icon">
-🖥️
+<div class="icon">🎁</div>
+<h3>10 Free Videos</h3>
+<p>ہر user کے لیے روزانہ 10 free video credits۔</p>
 </div>
-
-<h3>
-16:9 YouTube
-</h3>
-
-<p>
-YouTube اور landscape
-videos کے لیے۔
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<div class="icon">
-🎁
-</div>
-
-<h3>
-10 Free Videos
-</h3>
-
-<p>
-ہر user کے لیے روزانہ
-10 free video credits۔
-</p>
-
-</div>
-
 
 </section>
 
-
-
-<!-- =========================
-     VIDEO RATIOS
-========================= -->
 
 <section class="ratios">
 
-<h2>
-🎥 Choose Your Video Format
-</h2>
-
+<h2>🎥 Choose Your Video Format</h2>
 
 <div class="ratio-container">
 
+<div class="ratio-box">
+
+<div class="ratio-preview vertical"></div>
+
+<h3>📱 9:16</h3>
+
+<p>Shorts • TikTok • Reels</p>
+
+</div>
 
 <div class="ratio-box">
 
-<div class="ratio-preview vertical">
-</div>
+<div class="ratio-preview horizontal"></div>
 
-<h3>
-📱 9:16
-</h3>
+<h3>🖥️ 16:9</h3>
 
-<p>
-Shorts • TikTok • Reels
-</p>
+<p>YouTube • Landscape</p>
 
 </div>
-
-
-
-<div class="ratio-box">
-
-<div class="ratio-preview horizontal">
-</div>
-
-<h3>
-🖥️ 16:9
-</h3>
-
-<p>
-YouTube • Landscape
-</p>
-
-</div>
-
 
 </div>
 
 </section>
 
-
-
-<!-- =========================
-     FREE PLAN
-========================= -->
 
 <section class="free">
 
-<h2>
-🎁 10 Free Videos Every Day
-</h2>
-
+<h2>🎁 10 Free Videos Every Day</h2>
 
 <p>
-Create your account and start
-creating AI videos.
+Create your account and start creating AI videos.
 </p>
 
+<br>
 
-<a href="#" class="start">
+<button class="start" id="signupButton">
 🚀 Create Free Account
-</a>
+</button>
 
 </section>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
-<p>
-© 2026
-<strong>AI VIDEO 804</strong>
-</p>
-
-<p style="margin-top:10px;">
+© 2026 <strong>AI VIDEO 804</strong><br>
 AI Video Creation Platform
-</p>
 
 </footer>
 
 
-</body>
+<!-- LOGIN / SIGNUP MODAL -->
 
+<div class="modal" id="authModal">
+
+<div class="modal-box">
+
+<div class="close" id="closeModal">
+×
+</div>
+
+<h2 id="authTitle">
+🔐 Login
+</h2>
+
+<input
+type="email"
+id="email"
+class="input"
+placeholder="Email address"
+autocomplete="email"
+>
+
+<input
+type="password"
+id="password"
+class="input"
+placeholder="Password"
+autocomplete="current-password"
+>
+
+<button
+class="auth-submit"
+id="authSubmit">
+Login
+</button>
+
+<div class="switch">
+
+<span id="switchText">
+Don't have an account? Sign Up
+</span>
+
+</div>
+
+<div class="message" id="authMessage"></div>
+
+</div>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyCkSwQlqayOBFxsmZOc0rDb2uXjdwgw1eM",
+
+    authDomain:
+    "ai-video-804-f3340.firebaseapp.com",
+
+    projectId:
+    "ai-video-804-f3340",
+
+    storageBucket:
+    "ai-video-804-f3340.firebasestorage.app",
+
+    messagingSenderId:
+    "88887965571",
+
+    appId:
+    "1:88887965571:web:005ccd492a04c8431728b6"
+};
+
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const modal =
+document.getElementById("authModal");
+
+const loginButton =
+document.getElementById("loginButton");
+
+const logoutButton =
+document.getElementById("logoutButton");
+
+const signupButton =
+document.getElementById("signupButton");
+
+const closeModal =
+document.getElementById("closeModal");
+
+const authTitle =
+document.getElementById("authTitle");
+
+const authSubmit =
+document.getElementById("authSubmit");
+
+const switchText =
+document.getElementById("switchText");
+
+const emailInput =
+document.getElementById("email");
+
+const passwordInput =
+document.getElementById("password");
+
+const authMessage =
+document.getElementById("authMessage");
+
+const userBox =
+document.getElementById("userBox");
+
+const userEmail =
+document.getElementById("userEmail");
+
+const startButton =
+document.getElementById("startButton");
+
+
+let signupMode = false;
+
+
+/* =========================
+   OPEN LOGIN
+========================= */
+
+function openLogin(){
+
+    signupMode = false;
+
+    authTitle.innerText =
+    "🔐 Login";
+
+    authSubmit.innerText =
+    "Login";
+
+    switchText.innerText =
+    "Don't have an account? Sign Up";
+
+    authMessage.innerText = "";
+
+    modal.style.display =
+    "flex";
+}
+
+
+/* =========================
+   OPEN SIGNUP
+========================= */
+
+function openSignup(){
+
+    signupMode = true;
+
+    authTitle.innerText =
+    "📝 Create Account";
+
+    authSubmit.innerText =
+    "Sign Up";
+
+    switchText.innerText =
+    "Already have an account? Login";
+
+    authMessage.innerText = "";
+
+    modal.style.display =
+    "flex";
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+loginButton.onclick = function(e){
+
+    e.preventDefault();
+
+    openLogin();
+
+};
+
+
+/* =========================
+   SIGNUP BUTTON
+========================= */
+
+signupButton.onclick = function(){
+
+    openSignup();
+
+};
+
+
+/* =========================
+   START CREATING
+========================= */
+
+startButton.onclick = function(e){
+
+    e.preventDefault();
+
+    if(auth.currentUser){
+
+        alert(
+        "آپ login ہیں۔ Video generator اگلے مرحلے میں connect ہوگا۔"
+        );
+
+    }else{
+
+        openLogin();
+
+    }
+
+};
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+closeModal.onclick = function(){
+
+    modal.style.display =
+    "none";
+
+};
+
+
+/* =========================
+   SWITCH LOGIN / SIGNUP
+========================= */
+
+switchText.onclick = function(){
+
+    if(signupMode){
+
+        openLogin();
+
+    }else{
+
+        openSignup();
+
+    }
+
+};
+
+
+/* =========================
+   AUTH SUBMIT
+========================= */
+
+authSubmit.onclick = async function(){
+
+    const email =
+    emailInput.value.trim();
+
+    const password =
+    passwordInput.value;
+
+    authMessage.innerText = "";
+
+
+    if(!email || !password){
+
+        authMessage.innerText =
+        "Email اور password دونوں لکھیں۔";
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        authMessage.innerText =
+        "Password کم از کم 6 characters کا ہونا چاہیے۔";
+
+        return;
+    }
+
+
+    authSubmit.disabled = true;
+
+
+    try{
+
+        if(signupMode){
+
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            authMessage.style.color =
+            "#00ff9d";
+
+            authMessage.innerText =
+            "Account successfully created!";
+
+        }else{
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            modal.style.display =
+            "none";
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        authMessage.style.color =
+        "#ff6b7a";
+
+        let message =
+        "Something went wrong.";
+
+        if(error.code ===
+        "auth/email-already-in-use"){
+
+            message =
+            "یہ email پہلے سے registered ہے۔";
+
+        }
+
+        else if(error.code ===
+        "auth/invalid-email"){
+
+            message =
+            "Email درست نہیں ہے۔";
+
+        }
+
+        else if(error.code ===
+        "auth/weak-password"){
+
+            message =
+            "Password کمزور ہے۔ کم از کم 6 characters رکھیں۔";
+
+        }
+
+        else if(
+        error.code ===
+        "auth/invalid-credential"){
+
+            message =
+            "Email یا password غلط ہے۔";
+
+        }
+
+        else if(
+        error.code ===
+        "auth/user-not-found"){
+
+            message =
+            "یہ account موجود نہیں ہے۔ پہلے Sign Up کریں۔";
+
+        }
+
+        authMessage.innerText =
+        message;
+
+    }
+
+
+    authSubmit.disabled = false;
+
+};
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+logoutButton.onclick = async function(){
+
+    try{
+
+        await signOut(auth);
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+};
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(
+    auth,
+    function(user){
+
+        if(user){
+
+            loginButton.style.display =
+            "none";
+
+            logoutButton.style.display =
+            "block";
+
+            userBox.style.display =
+            "block";
+
+            userEmail.innerText =
+            user.email;
+
+        }else{
+
+            loginButton.style.display =
+            "block";
+
+            logoutButton.style.display =
+            "none";
+
+            userBox.style.display =
+            "none";
+
+            userEmail.innerText =
+            "";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
 </html>
